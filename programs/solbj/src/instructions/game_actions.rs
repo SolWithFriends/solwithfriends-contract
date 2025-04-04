@@ -57,7 +57,7 @@ pub fn deal_cards(ctx: Context<DealCardsCtx>) -> Result<()> {
 
     if all_done {
         dealer_play(table)?;
-        resolve_game(table, &ctx.remaining_accounts, &ctx.accounts.authority)?;
+        resolve_game(table, &ctx.remaining_accounts, &ctx.accounts.authority, &mut ctx.accounts.program_state)?;
     } else {
         table.advance_turn().ok_or(NoActivePlayers)?;
         table.game_status = 2;
@@ -69,6 +69,7 @@ pub fn deal_cards(ctx: Context<DealCardsCtx>) -> Result<()> {
 
 #[derive(Accounts)]
 pub struct DealCardsCtx<'info> {
+    #[account(mut)]
     pub program_state: Account<'info, ProgramState>,
     #[account(mut)]
     pub table: Account<'info, Table>,
@@ -118,7 +119,7 @@ pub fn hit(ctx: Context<GameActionCtx>, seat_index: u8) -> Result<()> {
         table.current_card_index = current_card_index;
         if table.advance_turn().is_none() {
             dealer_play(table)?;
-            resolve_game(table, &ctx.remaining_accounts, &ctx.accounts.authority)?;
+            resolve_game(table, &ctx.remaining_accounts, &ctx.accounts.authority, &mut ctx.accounts.program_state)?;
         }
     }else{
         table.current_card_index = current_card_index;
@@ -158,7 +159,7 @@ pub fn stand(ctx: Context<GameActionCtx>, seat_index: u8) -> Result<()> {
     seat.in_action = false;
     if table.advance_turn().is_none() {
         dealer_play(table)?;
-        resolve_game(table, &ctx.remaining_accounts, &ctx.accounts.authority)?;
+        resolve_game(table, &ctx.remaining_accounts, &ctx.accounts.authority, &mut ctx.accounts.program_state)?;
     }
     msg!("SOLWFR::BLACKJACK::STAND::SUCCESS:{}, seat_index:{}, player:{},", table.key(), seat_index, player_wallet.key());
     Ok(())
@@ -229,7 +230,7 @@ pub fn double_down(ctx: Context<GameActionCtx>, seat_index: u8) -> Result<()> {
     table.current_card_index = current_card_index;
     if table.advance_turn().is_none() {
         dealer_play(table)?;
-        resolve_game(table, &ctx.remaining_accounts, &ctx.accounts.authority)?;
+        resolve_game(table, &ctx.remaining_accounts, &ctx.accounts.authority, &mut ctx.accounts.program_state)?;
     }
     msg!("SOLWFR::BLACKJACK::DOUBLE_DOWN::SUCCESS:{}, seat_index:{}, player:{},", table.key(), seat_index, player_wallet.key());
     Ok(())
@@ -237,6 +238,7 @@ pub fn double_down(ctx: Context<GameActionCtx>, seat_index: u8) -> Result<()> {
 
 #[derive(Accounts)]
 pub struct GameActionCtx<'info> {
+    #[account(mut)]
     pub program_state: Account<'info, ProgramState>,
     #[account(mut)]
     pub table: Account<'info, Table>,
@@ -308,7 +310,7 @@ fn calculate_payout(bet: u64, result: GameResult, is_blackjack: bool) -> u64 {
     }
 }
 
-fn resolve_game(table: &mut Account<Table>, remaining_accounts: &[AccountInfo], authority_wallet: &AccountInfo) -> Result<()> {
+fn resolve_game(table: &mut Account<Table>, remaining_accounts: &[AccountInfo], authority_wallet: &AccountInfo, program_state: &mut Account<ProgramState>) -> Result<()> {
     // Validate remaining_accounts length
     let active_players = table
         .seats
@@ -416,7 +418,7 @@ fn resolve_game(table: &mut Account<Table>, remaining_accounts: &[AccountInfo], 
     // Update table's lamports after the loop
     if total_payout_to_players > 0 {
         **authority_wallet.try_borrow_mut_lamports()? += authority_fee_to_be_paid;
-       
+        program_state.fees_collected = program_state.fees_collected.checked_add(authority_fee_to_be_paid).ok_or(MathOverflow)?;
         if table.dealer_liquidity < total_dealer_payouts {
             return Err(InsufficientFunds.into());
         }

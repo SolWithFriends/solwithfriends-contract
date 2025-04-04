@@ -7,6 +7,7 @@ pub struct ProgramState {
     pub table_count: u64,
     pub player_count: u64,
     pub platform_fee: u64,
+    pub fees_collected: u64,
     pub platform_address: Pubkey,
     pub site_authority: Pubkey,
     pub lottery_count: u64,

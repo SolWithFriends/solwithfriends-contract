@@ -1,5 +1,5 @@
 {
-  "address": "X6hpTJjFxRNCBCKEfu3Rn25BA8yMhqMkPp5A1un7ghK",
+  "address": "4xUhxC43seVjQx8rZckhbupyEbvLRAnCwNMEzdd2VuNc",
   "metadata": {
     "name": "solbj",
     "version": "0.1.0",
@@ -82,7 +82,8 @@
           "address": "11111111111111111111111111111111"
         },
         {
-          "name": "program_state"
+          "name": "program_state",
+          "writable": true
         }
       ],
       "args": []
@@ -293,7 +294,8 @@
       ],
       "accounts": [
         {
-          "name": "program_state"
+          "name": "program_state",
+          "writable": true
         },
         {
           "name": "table",
@@ -429,7 +431,8 @@
       ],
       "accounts": [
         {
-          "name": "program_state"
+          "name": "program_state",
+          "writable": true
         },
         {
           "name": "table",
@@ -469,7 +472,8 @@
       ],
       "accounts": [
         {
-          "name": "program_state"
+          "name": "program_state",
+          "writable": true
         },
         {
           "name": "table",
@@ -837,7 +841,8 @@
       ],
       "accounts": [
         {
-          "name": "program_state"
+          "name": "program_state",
+          "writable": true
         },
         {
           "name": "table",
@@ -945,6 +950,39 @@
           "type": "u64"
         }
       ]
+    },
+    {
+      "name": "withdraw_fees",
+      "discriminator": [
+        198,
+        212,
+        171,
+        109,
+        144,
+        215,
+        174,
+        89
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "treasury",
+          "writable": true
+        },
+        {
+          "name": "site_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
     }
   ],
   "accounts": [
@@ -1492,6 +1530,10 @@
           },
           {
             "name": "platform_fee",
+            "type": "u64"
+          },
+          {
+            "name": "fees_collected",
             "type": "u64"
           },
           {

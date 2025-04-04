@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/solbj.json`.
  */
 export type Solbj = {
-  "address": "X6hpTJjFxRNCBCKEfu3Rn25BA8yMhqMkPp5A1un7ghK",
+  "address": "4xUhxC43seVjQx8rZckhbupyEbvLRAnCwNMEzdd2VuNc",
   "metadata": {
     "name": "solbj",
     "version": "0.1.0",
@@ -88,7 +88,8 @@ export type Solbj = {
           "address": "11111111111111111111111111111111"
         },
         {
-          "name": "programState"
+          "name": "programState",
+          "writable": true
         }
       ],
       "args": []
@@ -299,7 +300,8 @@ export type Solbj = {
       ],
       "accounts": [
         {
-          "name": "programState"
+          "name": "programState",
+          "writable": true
         },
         {
           "name": "table",
@@ -435,7 +437,8 @@ export type Solbj = {
       ],
       "accounts": [
         {
-          "name": "programState"
+          "name": "programState",
+          "writable": true
         },
         {
           "name": "table",
@@ -475,7 +478,8 @@ export type Solbj = {
       ],
       "accounts": [
         {
-          "name": "programState"
+          "name": "programState",
+          "writable": true
         },
         {
           "name": "table",
@@ -843,7 +847,8 @@ export type Solbj = {
       ],
       "accounts": [
         {
-          "name": "programState"
+          "name": "programState",
+          "writable": true
         },
         {
           "name": "table",
@@ -951,6 +956,39 @@ export type Solbj = {
           "type": "u64"
         }
       ]
+    },
+    {
+      "name": "withdrawFees",
+      "discriminator": [
+        198,
+        212,
+        171,
+        109,
+        144,
+        215,
+        174,
+        89
+      ],
+      "accounts": [
+        {
+          "name": "programState",
+          "writable": true
+        },
+        {
+          "name": "treasury",
+          "writable": true
+        },
+        {
+          "name": "siteAuthority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
     }
   ],
   "accounts": [
@@ -1498,6 +1536,10 @@ export type Solbj = {
           },
           {
             "name": "platformFee",
+            "type": "u64"
+          },
+          {
+            "name": "feesCollected",
             "type": "u64"
           },
           {

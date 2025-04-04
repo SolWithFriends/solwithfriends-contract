@@ -67,5 +67,5 @@ const main = async (cluster: string) => {
   }
 };
 
-const cluster: string = process.env.NEXT_PUBLIC_CLUSTER || "devnet";
+const cluster: string = process.env.NEXT_PUBLIC_CLUSTER || "mainnet-beta";
 main(cluster).catch((error) => console.log(error));

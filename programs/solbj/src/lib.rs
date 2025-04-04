@@ -13,7 +13,7 @@ use states::*;
 //anchor upgrade target/deploy/basic.so --program-id 66WaYihanAvpcmnN9zYLSi6g8eipjBb8PfFeNUEzUHPS
 
 // Program ID declaration (replace with your own ID when deploying)
-declare_id!("X6hpTJjFxRNCBCKEfu3Rn25BA8yMhqMkPp5A1un7ghK");
+declare_id!("4xUhxC43seVjQx8rZckhbupyEbvLRAnCwNMEzdd2VuNc");
 
 #[program]
 pub mod solbj {
@@ -110,6 +110,9 @@ pub mod solbj {
         instructions::withdraw(ctx, amount)
     }
 
+    pub fn withdraw_fees(ctx: Context<WithdrawFeesCtx>) -> Result<()> {
+        instructions::withdraw_fees(ctx)
+    }
     
     
 }

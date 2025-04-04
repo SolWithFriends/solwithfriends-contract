@@ -164,6 +164,7 @@ pub fn claim_prize(ctx: Context<ClaimPrizeCtx>) -> Result<()> {
     **lottery.to_account_info().try_borrow_mut_lamports()? -= prize;
     **buyer.to_account_info().try_borrow_mut_lamports()? += prize - program_fee;
     **ctx.accounts.site_authority.to_account_info().try_borrow_mut_lamports()? += program_fee;
+    program_state.fees_collected += program_fee;
     lottery.claimed = true;
     lottery.claimed_by = buyer.key();
     msg!("SOLWFR::LOTTERY::CLAIM_PRIZE::SUCCESS:{},  prize:{}, buyer:{}, program_fee:{}, ", lottery.key(), prize, buyer.key(), program_fee);
@@ -184,6 +185,7 @@ pub struct ClaimPrizeCtx<'info> {
     #[account(mut)]
     pub site_authority: AccountInfo<'info>,
     pub system_program: Program<'info, System>,
+    #[account(mut)]
     pub program_state: Account<'info, ProgramState>,
 }
 

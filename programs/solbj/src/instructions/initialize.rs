@@ -16,6 +16,7 @@ pub fn initialize(ctx: Context<InitializeCtx>) -> Result<()> {
     state.player_count = 0;
     state.lottery_count = 0;
     state.platform_fee = 1;
+    state.fees_collected = 0;
     state.platform_address = deployer.key();
     state.initialized = true;
     state.site_authority = ctx.accounts.site_authority.key();

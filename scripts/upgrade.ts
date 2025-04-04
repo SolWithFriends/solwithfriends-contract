@@ -35,7 +35,7 @@ const main = async () => {
   console.log("Program ID:", programId);
 
   // Get old program size
-  const oldProgramPath = "target/deploy/basic.so";
+  const oldProgramPath = "target/deploy/solbj.so";
   const oldSize = getFileSize(oldProgramPath);
   console.log("Old program size:", oldSize, "bytes");
 
@@ -51,7 +51,7 @@ const main = async () => {
     // Try to upgrade
     console.log("Attempting upgrade...");
     execSync(
-      `anchor upgrade --program-id ${programId} target/deploy/basic.so`,
+      `anchor upgrade --program-id ${programId} target/deploy/solbj.so`,
       { stdio: "inherit" }
     );
     console.log("✅ Upgrade completed successfully!");
@@ -71,7 +71,7 @@ const main = async () => {
       // Try upgrade again
       console.log("Attempting upgrade again...");
       execSync(
-        `anchor upgrade --program-id ${programId} target/deploy/basic.so`,
+        `anchor upgrade --program-id ${programId} target/deploy/solbj.so`,
         { stdio: "inherit" }
       );
       console.log("✅ Upgrade completed successfully after extension!");

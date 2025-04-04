@@ -12,3 +12,5 @@ test-ledger
 .yarn
 scripts/site_authority.json
 scripts/deployment_log.json
+scripts/treasury.json
+.env

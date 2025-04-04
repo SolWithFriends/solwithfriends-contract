@@ -6,15 +6,15 @@ resolution = true
 skip-lint = false
 
 
-[programs.devnet]
-solbj = "X6hpTJjFxRNCBCKEfu3Rn25BA8yMhqMkPp5A1un7ghK"
+[programs.mainnet]
+solbj = "4xUhxC43seVjQx8rZckhbupyEbvLRAnCwNMEzdd2VuNc"
 
 
 [registry]
-url = "https://api.apr.dev"
+url = "https://solwithfriends.com"
 
 [provider]
-cluster = "devnet"
+cluster = "mainnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

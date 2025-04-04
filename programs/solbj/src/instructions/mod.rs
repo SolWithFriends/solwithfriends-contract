@@ -11,6 +11,9 @@ pub mod game_actions;
 //player wallet
 pub mod player_wallet;
 
+//withdraw fees
+pub mod withdraw_fees;
+
 pub use initialize::*;
 
 //lottery
@@ -23,3 +26,6 @@ pub use player_wallet::*;
 pub use table_actions::*;
 pub use player_actions::*;
 pub use game_actions::*;
+
+//withdraw fees
+pub use withdraw_fees::*;
