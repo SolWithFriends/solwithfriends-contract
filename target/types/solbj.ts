@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/solbj.json`.
  */
 export type Solbj = {
-  "address": "4xUhxC43seVjQx8rZckhbupyEbvLRAnCwNMEzdd2VuNc",
+  "address": "Eo2L4feDSHRMZUaz2MDPjh856Ey8UiNKrDw6zTbzScKg",
   "metadata": {
     "name": "solbj",
     "version": "0.1.0",
