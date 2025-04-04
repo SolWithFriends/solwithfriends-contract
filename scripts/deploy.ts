@@ -125,7 +125,7 @@ const main = () => {
   // 3. Generate new keypair
   console.log("\n🔑 Generating new keypair...");
   execSync(
-    "solana-keygen new -o target/deploy/basic-keypair.json --force --no-bip39-passphrase",
+    "solana-keygen new -o target/deploy/solbj-keypair.json --force --no-bip39-passphrase",
     { stdio: "inherit" }
   );
 
