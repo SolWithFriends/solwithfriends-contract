@@ -1,0 +1,1949 @@
+{
+  "address": "GyjVtacGa7irP3s4EMKt49FU769e5SRrW2kDVnd7AeSp",
+  "metadata": {
+    "name": "solwfr",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "buy_ticket",
+      "discriminator": [
+        11,
+        24,
+        17,
+        193,
+        168,
+        116,
+        164,
+        169
+      ],
+      "accounts": [
+        {
+          "name": "lottery",
+          "writable": true
+        },
+        {
+          "name": "buyer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "ticket",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "ticket_amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "claim_prize",
+      "discriminator": [
+        157,
+        233,
+        139,
+        121,
+        246,
+        62,
+        234,
+        235
+      ],
+      "accounts": [
+        {
+          "name": "lottery",
+          "writable": true
+        },
+        {
+          "name": "ticket"
+        },
+        {
+          "name": "buyer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "ticket"
+          ]
+        },
+        {
+          "name": "site_authority",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "program_state",
+          "writable": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "close_table",
+      "discriminator": [
+        149,
+        214,
+        44,
+        14,
+        190,
+        244,
+        132,
+        48
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "tid"
+              }
+            ]
+          }
+        },
+        {
+          "name": "dealer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "tid",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "create_lottery",
+      "discriminator": [
+        242,
+        165,
+        247,
+        119,
+        17,
+        203,
+        21,
+        42
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "lottery",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "ticket_price",
+          "type": "u64"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "time_limit",
+          "type": "u64"
+        },
+        {
+          "name": "max_tickets",
+          "type": "u64"
+        },
+        {
+          "name": "is_automatic",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "create_table",
+      "discriminator": [
+        214,
+        142,
+        131,
+        250,
+        242,
+        83,
+        135,
+        185
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "dealer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "max_bet",
+          "type": "u64"
+        },
+        {
+          "name": "min_bet",
+          "type": "u64"
+        },
+        {
+          "name": "split_allowed",
+          "type": "bool"
+        },
+        {
+          "name": "double_allowed",
+          "type": "bool"
+        },
+        {
+          "name": "dealer_liquidity",
+          "type": "u64"
+        },
+        {
+          "name": "max_players",
+          "type": "u8"
+        },
+        {
+          "name": "time_between_hands",
+          "type": "i64"
+        },
+        {
+          "name": "time_between_actions",
+          "type": "i64"
+        },
+        {
+          "name": "inactivity_timeout",
+          "type": "i64"
+        },
+        {
+          "name": "table_fee",
+          "type": "u8"
+        },
+        {
+          "name": "huddle_room_id",
+          "type": "string"
+        },
+        {
+          "name": "num_decks",
+          "type": "u8"
+        },
+        {
+          "name": "deck_penetration",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "deal_cards",
+      "discriminator": [
+        38,
+        218,
+        247,
+        103,
+        218,
+        237,
+        24,
+        65
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "recent_slothashes",
+          "address": "SysvarS1otHashes111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "client_entropy",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "dealer_deposit",
+      "discriminator": [
+        198,
+        156,
+        64,
+        116,
+        186,
+        54,
+        232,
+        220
+      ],
+      "accounts": [
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "dealer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "dealer_withdraw",
+      "discriminator": [
+        30,
+        205,
+        65,
+        222,
+        35,
+        109,
+        51,
+        200
+      ],
+      "accounts": [
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "dealer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "deposit",
+      "discriminator": [
+        242,
+        35,
+        198,
+        137,
+        82,
+        225,
+        242,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "player_wallet",
+          "writable": true
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "player_wallet"
+          ]
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "double_down",
+      "discriminator": [
+        224,
+        14,
+        59,
+        137,
+        102,
+        107,
+        222,
+        109
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "player_wallet",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "recent_slothashes",
+          "address": "SysvarS1otHashes111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "seat_index",
+          "type": "u8"
+        },
+        {
+          "name": "client_entropy",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "emergency_close_table",
+      "discriminator": [
+        197,
+        229,
+        36,
+        87,
+        191,
+        199,
+        76,
+        210
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "dealer",
+          "writable": true
+        },
+        {
+          "name": "site_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "emergency_close_wallet",
+      "discriminator": [
+        82,
+        90,
+        238,
+        13,
+        20,
+        95,
+        222,
+        236
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "player_wallet",
+          "writable": true
+        },
+        {
+          "name": "player",
+          "writable": true
+        },
+        {
+          "name": "site_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "hit",
+      "discriminator": [
+        237,
+        225,
+        125,
+        176,
+        242,
+        47,
+        187,
+        184
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "player_wallet",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "recent_slothashes",
+          "address": "SysvarS1otHashes111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "seat_index",
+          "type": "u8"
+        },
+        {
+          "name": "client_entropy",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  103,
+                  114,
+                  97,
+                  109,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "site_authority"
+        },
+        {
+          "name": "deployer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_player_wallet",
+      "discriminator": [
+        165,
+        31,
+        2,
+        184,
+        174,
+        146,
+        182,
+        42
+      ],
+      "accounts": [
+        {
+          "name": "player_wallet",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114,
+                  95,
+                  119,
+                  97,
+                  108,
+                  108,
+                  101,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "site_authority"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "program_state"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "join_seat",
+      "discriminator": [
+        163,
+        253,
+        32,
+        120,
+        247,
+        157,
+        181,
+        142
+      ],
+      "accounts": [
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "player_wallet",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "player_wallet"
+          ]
+        },
+        {
+          "name": "program_state"
+        }
+      ],
+      "args": [
+        {
+          "name": "seat_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "leave_seat",
+      "discriminator": [
+        108,
+        242,
+        177,
+        6,
+        45,
+        227,
+        145,
+        142
+      ],
+      "accounts": [
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "player_wallet",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "player_wallet"
+          ]
+        },
+        {
+          "name": "program_state"
+        }
+      ],
+      "args": [
+        {
+          "name": "seat_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "pick_winner",
+      "discriminator": [
+        227,
+        62,
+        25,
+        73,
+        132,
+        106,
+        68,
+        96
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "lottery",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  111,
+                  116,
+                  116,
+                  101,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "lottery_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "lottery_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "place_bet",
+      "discriminator": [
+        222,
+        62,
+        67,
+        220,
+        63,
+        166,
+        126,
+        33
+      ],
+      "accounts": [
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "player_wallet",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "player_wallet"
+          ]
+        },
+        {
+          "name": "program_state"
+        }
+      ],
+      "args": [
+        {
+          "name": "seat_index",
+          "type": "u8"
+        },
+        {
+          "name": "bet_amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "remove_bet",
+      "discriminator": [
+        199,
+        112,
+        9,
+        190,
+        119,
+        188,
+        70,
+        123
+      ],
+      "accounts": [
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "player_wallet",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "player_wallet"
+          ]
+        },
+        {
+          "name": "program_state"
+        }
+      ],
+      "args": [
+        {
+          "name": "seat_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "stand",
+      "discriminator": [
+        215,
+        119,
+        10,
+        61,
+        97,
+        252,
+        126,
+        243
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "player_wallet",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "recent_slothashes",
+          "address": "SysvarS1otHashes111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "seat_index",
+          "type": "u8"
+        },
+        {
+          "name": "client_entropy",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_table",
+      "discriminator": [
+        224,
+        23,
+        10,
+        48,
+        181,
+        73,
+        121,
+        187
+      ],
+      "accounts": [
+        {
+          "name": "table",
+          "writable": true
+        },
+        {
+          "name": "dealer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "max_bet",
+          "type": "u64"
+        },
+        {
+          "name": "min_bet",
+          "type": "u64"
+        },
+        {
+          "name": "max_players",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "withdraw",
+      "discriminator": [
+        183,
+        18,
+        70,
+        156,
+        148,
+        109,
+        161,
+        34
+      ],
+      "accounts": [
+        {
+          "name": "player_wallet",
+          "writable": true
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "player_wallet"
+          ]
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdraw_fees",
+      "discriminator": [
+        198,
+        212,
+        171,
+        109,
+        144,
+        215,
+        174,
+        89
+      ],
+      "accounts": [
+        {
+          "name": "program_state",
+          "writable": true
+        },
+        {
+          "name": "treasury",
+          "writable": true
+        },
+        {
+          "name": "site_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Lottery",
+      "discriminator": [
+        162,
+        182,
+        26,
+        12,
+        164,
+        214,
+        112,
+        3
+      ]
+    },
+    {
+      "name": "PlayerWallet",
+      "discriminator": [
+        70,
+        208,
+        240,
+        254,
+        222,
+        47,
+        4,
+        36
+      ]
+    },
+    {
+      "name": "ProgramState",
+      "discriminator": [
+        77,
+        209,
+        137,
+        229,
+        149,
+        67,
+        167,
+        230
+      ]
+    },
+    {
+      "name": "Table",
+      "discriminator": [
+        34,
+        100,
+        138,
+        97,
+        236,
+        129,
+        230,
+        112
+      ]
+    },
+    {
+      "name": "Ticket",
+      "discriminator": [
+        41,
+        228,
+        24,
+        165,
+        78,
+        90,
+        235,
+        200
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "AlreadyInitialized",
+      "msg": "Already initialized"
+    },
+    {
+      "code": 6001,
+      "name": "LotteryAlreadyExists",
+      "msg": "Lottery already exists"
+    },
+    {
+      "code": 6002,
+      "name": "WinnerAlreadyExists",
+      "msg": "Winner already exists"
+    },
+    {
+      "code": 6003,
+      "name": "NoTicketsPurchased",
+      "msg": "No tickets purchased"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidWinner",
+      "msg": "Invalid winner"
+    },
+    {
+      "code": 6005,
+      "name": "AlreadyClaimed",
+      "msg": "Already claimed"
+    },
+    {
+      "code": 6006,
+      "name": "LotteryNotFound",
+      "msg": "Lottery not found"
+    },
+    {
+      "code": 6007,
+      "name": "TicketNotFound",
+      "msg": "Ticket not found"
+    },
+    {
+      "code": 6008,
+      "name": "LotteryAlreadyClaimed",
+      "msg": "Lottery already claimed"
+    },
+    {
+      "code": 6009,
+      "name": "InvalidLotteryId",
+      "msg": "Invalid lottery id"
+    },
+    {
+      "code": 6010,
+      "name": "NoWinner",
+      "msg": "No winner"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidTicketId",
+      "msg": "Invalid ticket id"
+    },
+    {
+      "code": 6012,
+      "name": "InvalidTicketAmount",
+      "msg": "Invalid ticket amount"
+    },
+    {
+      "code": 6013,
+      "name": "TitleTooLong",
+      "msg": "Title too long"
+    },
+    {
+      "code": 6014,
+      "name": "InvalidTimeLimit",
+      "msg": "Invalid time limit"
+    },
+    {
+      "code": 6015,
+      "name": "InvalidMaxTickets",
+      "msg": "Invalid max tickets"
+    },
+    {
+      "code": 6016,
+      "name": "InvalidLotteryParameters",
+      "msg": "Invalid lottery parameters"
+    },
+    {
+      "code": 6017,
+      "name": "TableNotFound",
+      "msg": "Table not found"
+    },
+    {
+      "code": 6018,
+      "name": "InsufficientLiquidity",
+      "msg": "Insufficient liquidity"
+    },
+    {
+      "code": 6019,
+      "name": "InsufficientFunds",
+      "msg": "Insufficient funds"
+    },
+    {
+      "code": 6020,
+      "name": "InvalidDealer",
+      "msg": "Invalid dealer"
+    },
+    {
+      "code": 6021,
+      "name": "InvalidBetAmount",
+      "msg": "Invalid bet amount"
+    },
+    {
+      "code": 6022,
+      "name": "PlayerAlreadyBet",
+      "msg": "Player already bet"
+    },
+    {
+      "code": 6023,
+      "name": "InvalidGameState",
+      "msg": "Invalid game state"
+    },
+    {
+      "code": 6024,
+      "name": "PlayerAlreadyJoined",
+      "msg": "Player already joined"
+    },
+    {
+      "code": 6025,
+      "name": "InvalidPlayer",
+      "msg": "Invalid player"
+    },
+    {
+      "code": 6026,
+      "name": "ActiveBetExists",
+      "msg": "Active bet exists"
+    },
+    {
+      "code": 6027,
+      "name": "PlayerNotJoined",
+      "msg": "Player not joined"
+    },
+    {
+      "code": 6028,
+      "name": "NoBet",
+      "msg": "No bet"
+    },
+    {
+      "code": 6029,
+      "name": "InvalidAuthority",
+      "msg": "Invalid authority"
+    },
+    {
+      "code": 6030,
+      "name": "PlayerInAction",
+      "msg": "Player in action"
+    },
+    {
+      "code": 6031,
+      "name": "PlayerHandNotSet",
+      "msg": "Player hand not set"
+    },
+    {
+      "code": 6032,
+      "name": "DealerHandNotSet",
+      "msg": "Dealer hand not set"
+    },
+    {
+      "code": 6033,
+      "name": "PlayerNotInAction",
+      "msg": "Player not in action"
+    },
+    {
+      "code": 6034,
+      "name": "DealerNotInAction",
+      "msg": "Dealer not in action"
+    },
+    {
+      "code": 6035,
+      "name": "NoHandFound",
+      "msg": "No hand found"
+    },
+    {
+      "code": 6036,
+      "name": "GameInProgress",
+      "msg": "Game in progress"
+    },
+    {
+      "code": 6037,
+      "name": "DoubleDownNotAllowed",
+      "msg": "Double down not allowed"
+    },
+    {
+      "code": 6038,
+      "name": "InvalidDoubleDown",
+      "msg": "Invalid double down"
+    },
+    {
+      "code": 6039,
+      "name": "TableFull",
+      "msg": "Table is full"
+    },
+    {
+      "code": 6040,
+      "name": "Unauthorized",
+      "msg": "Unauthorized"
+    },
+    {
+      "code": 6041,
+      "name": "InvalidSeatIndex",
+      "msg": "Invalid seat index"
+    },
+    {
+      "code": 6042,
+      "name": "SeatTaken",
+      "msg": "Seat is already taken"
+    },
+    {
+      "code": 6043,
+      "name": "NoActivePlayers",
+      "msg": "No active players"
+    },
+    {
+      "code": 6044,
+      "name": "NotYourTurn",
+      "msg": "Not your turn"
+    },
+    {
+      "code": 6045,
+      "name": "NotInAction",
+      "msg": "Not in action"
+    },
+    {
+      "code": 6046,
+      "name": "NoBetsPlaced",
+      "msg": "No bets placed"
+    },
+    {
+      "code": 6047,
+      "name": "PlayerNotFound",
+      "msg": "Player not found"
+    },
+    {
+      "code": 6048,
+      "name": "OutOfCards",
+      "msg": "Out of cards"
+    },
+    {
+      "code": 6049,
+      "name": "MathOverflow",
+      "msg": "Math overflow"
+    },
+    {
+      "code": 6050,
+      "name": "InvalidRemainingAccounts",
+      "msg": "Invalid remaining accounts"
+    },
+    {
+      "code": 6051,
+      "name": "InvalidTableBalance",
+      "msg": "Invalid table balance"
+    },
+    {
+      "code": 6052,
+      "name": "InvalidPrizePoolPayout",
+      "msg": "Invalid prize pool payout"
+    },
+    {
+      "code": 6053,
+      "name": "SeatOccupied",
+      "msg": "Seat occupied"
+    },
+    {
+      "code": 6054,
+      "name": "InsufficientSeats",
+      "msg": "Insufficient seats"
+    },
+    {
+      "code": 6055,
+      "name": "InvalidNumDecks",
+      "msg": "Invalid num decks"
+    },
+    {
+      "code": 6056,
+      "name": "InvalidDeckPenetration",
+      "msg": "Invalid deck penetration"
+    },
+    {
+      "code": 6057,
+      "name": "TooManyVerifiedPrograms",
+      "msg": "Too many verified programs"
+    }
+  ],
+  "types": [
+    {
+      "name": "Card",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "rank",
+            "type": "u8"
+          },
+          {
+            "name": "suit",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameResult",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Won"
+          },
+          {
+            "name": "Lost"
+          },
+          {
+            "name": "Push"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Hand",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "cards",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Card"
+                }
+              }
+            }
+          },
+          {
+            "name": "is_soft",
+            "type": "bool"
+          },
+          {
+            "name": "value",
+            "type": "u8"
+          },
+          {
+            "name": "is_blackjack",
+            "type": "bool"
+          },
+          {
+            "name": "is_bust",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Lottery",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "ticket_price",
+            "type": "u64"
+          },
+          {
+            "name": "last_ticket_id",
+            "type": "u64"
+          },
+          {
+            "name": "winner_set",
+            "type": "u32"
+          },
+          {
+            "name": "winner_id",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "claimed",
+            "type": "bool"
+          },
+          {
+            "name": "claimed_by",
+            "type": "pubkey"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "time_limit",
+            "type": "u64"
+          },
+          {
+            "name": "max_tickets",
+            "type": "u64"
+          },
+          {
+            "name": "is_automatic",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerHandResult",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player_hand",
+            "type": {
+              "defined": {
+                "name": "Hand"
+              }
+            }
+          },
+          {
+            "name": "bet_amount",
+            "type": "u64"
+          },
+          {
+            "name": "payout_amount",
+            "type": "u64"
+          },
+          {
+            "name": "hand_result",
+            "type": {
+              "defined": {
+                "name": "GameResult"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerWallet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "balance",
+            "type": "u64"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProgramState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "initialized",
+            "type": "bool"
+          },
+          {
+            "name": "table_count",
+            "type": "u64"
+          },
+          {
+            "name": "player_count",
+            "type": "u64"
+          },
+          {
+            "name": "platform_fee",
+            "type": "u64"
+          },
+          {
+            "name": "fees_collected",
+            "type": "u64"
+          },
+          {
+            "name": "platform_address",
+            "type": "pubkey"
+          },
+          {
+            "name": "site_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "lottery_count",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Seat",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "player_wallet",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "bet",
+            "type": "u64"
+          },
+          {
+            "name": "in_action",
+            "type": "bool"
+          },
+          {
+            "name": "hand",
+            "type": {
+              "option": {
+                "defined": {
+                  "name": "Hand"
+                }
+              }
+            }
+          },
+          {
+            "name": "is_turn",
+            "type": "bool"
+          },
+          {
+            "name": "previous_hand",
+            "type": {
+              "option": {
+                "defined": {
+                  "name": "PlayerHandResult"
+                }
+              }
+            }
+          },
+          {
+            "name": "last_action_timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "last_hand_played_timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Table",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "dealer",
+            "type": "pubkey"
+          },
+          {
+            "name": "dealer_liquidity",
+            "type": "u64"
+          },
+          {
+            "name": "min_bet",
+            "type": "u64"
+          },
+          {
+            "name": "max_bet",
+            "type": "u64"
+          },
+          {
+            "name": "total_hands",
+            "type": "u64"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          },
+          {
+            "name": "used_card_indexes",
+            "type": {
+              "vec": "bool"
+            }
+          },
+          {
+            "name": "deck",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Card"
+                }
+              }
+            }
+          },
+          {
+            "name": "num_decks",
+            "type": "u8"
+          },
+          {
+            "name": "deck_penetration",
+            "type": "u8"
+          },
+          {
+            "name": "deck_seed",
+            "type": "u64"
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "name": "table_status",
+            "type": "u8"
+          },
+          {
+            "name": "table_fee",
+            "type": "u8"
+          },
+          {
+            "name": "huddle_room_id",
+            "type": "string"
+          },
+          {
+            "name": "has_players",
+            "type": "bool"
+          },
+          {
+            "name": "seats",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Seat"
+                }
+              }
+            }
+          },
+          {
+            "name": "current_turn_index",
+            "type": {
+              "option": "u8"
+            }
+          },
+          {
+            "name": "dealer_hand",
+            "type": {
+              "option": {
+                "defined": {
+                  "name": "Hand"
+                }
+              }
+            }
+          },
+          {
+            "name": "game_status",
+            "type": "u8"
+          },
+          {
+            "name": "previous_dealer_hand",
+            "type": {
+              "option": {
+                "defined": {
+                  "name": "Hand"
+                }
+              }
+            }
+          },
+          {
+            "name": "split_allowed",
+            "type": "bool"
+          },
+          {
+            "name": "double_allowed",
+            "type": "bool"
+          },
+          {
+            "name": "max_players",
+            "type": "u8"
+          },
+          {
+            "name": "last_hand_timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "show_hand_timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "time_between_hands",
+            "type": "i64"
+          },
+          {
+            "name": "time_between_actions",
+            "type": "i64"
+          },
+          {
+            "name": "inactive_player_timeout",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ticket",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "size",
+            "type": "u64"
+          },
+          {
+            "name": "buyer",
+            "type": "pubkey"
+          },
+          {
+            "name": "lottery_id",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}
