@@ -9,8 +9,8 @@ import { TOKEN_PROGRAM_ID, getMint, getAccount } from "@solana/spl-token";
 import { Program, AnchorProvider, web3, Wallet } from "@coral-xyz/anchor";
 import fs from "fs";
 import { getClusterURL } from "../utils/helper";
-import { Solbj } from "../target/types/solbj";
-import idl from "../target/idl/solbj.json";
+import { Solwfr } from "../target/types/solwfr";
+import idl from "../target/idl/solwfr.json";
 // Define the holder type
 interface TokenHolder {
   address: string;
@@ -201,7 +201,7 @@ const main = async () => {
   const provider = new AnchorProvider(connection, new Wallet(wallet), {
     commitment: "confirmed",
   });
-  const program = new Program<Solbj>(idl as any, provider);
+  const program = new Program<Solwfr>(idl as any, provider);
   const currentPath = process.cwd();
   const treasuryKeypair = Keypair.fromSecretKey(
     Uint8Array.from(

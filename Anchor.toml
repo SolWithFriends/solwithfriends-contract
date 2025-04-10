@@ -5,14 +5,14 @@ anchor_version = "0.30.1"
 resolution = true
 skip-lint = false
 
-[programs.devnet]
+[programs.mainnet]
 solwfr = "GyjVtacGa7irP3s4EMKt49FU769e5SRrW2kDVnd7AeSp"
 
 [registry]
 url = "https://solwithfriends.com"
 
 [provider]
-cluster = "Devnet"
+cluster = "https://mainnet.helius-rpc.com/?api-key=d93512d1-6414-4d8a-bddf-83576acd0dc0"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
