@@ -147,7 +147,6 @@ pub fn place_bet(ctx: Context<PlayerWalletCtx>, seat_index: u8, bet_amount: u64)
     let seat = &mut table.seats[seat_index as usize];
     if seat.bet > 0 {
         seat.bet = seat.bet.checked_add(bet_amount).unwrap();
-        player_wallet.balance = player_wallet.balance.checked_sub(bet_amount).unwrap();
     } else {
         seat.bet = bet_amount;
     }
@@ -197,7 +196,6 @@ pub fn remove_bet(ctx: Context<PlayerWalletCtx>, seat_index: u8) -> Result<()> {
     **table.to_account_info().try_borrow_mut_lamports()? -= bet_amount;
 
     // Update balances
-    player_wallet.balance = player_wallet.balance.checked_add(bet_amount).unwrap();
     table.seats[seat_index as usize].bet = 0;
 
     msg!("SOLWFR::BLACKJACK::REMOVE_BET::SUCCESS:{}, player:{}, seat_index:{}, bet_amount:{},", table.key(), player_wallet.key(), seat_index, bet_amount);

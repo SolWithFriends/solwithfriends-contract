@@ -6,13 +6,13 @@ resolution = true
 skip-lint = false
 
 [programs.mainnet]
-solwfr = "GyjVtacGa7irP3s4EMKt49FU769e5SRrW2kDVnd7AeSp"
+solwfr = "GNsGuF2dfgs4NniXa5vwZ9UcE9XdQPBU9AsJFvxT9hzv"
 
 [registry]
 url = "https://solwithfriends.com"
 
 [provider]
-cluster = "https://mainnet.helius-rpc.com/?api-key=d93512d1-6414-4d8a-bddf-83576acd0dc0"
+cluster = "https://mainnet-beta.solana.com"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

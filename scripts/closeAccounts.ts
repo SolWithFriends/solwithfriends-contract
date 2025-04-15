@@ -5,7 +5,7 @@ import { getClusterURL } from "../utils/helper";
 import fs from "fs";
 import idl from "../target/idl/solwfr.json";
 const main = async () => {
-  const connection = new Connection(getClusterURL("devnet"), "confirmed");
+  const connection = new Connection(getClusterURL("mainnet-beta"), "confirmed");
   const wallet = {
     publicKey: PublicKey.default,
     signTransaction: async () => {
@@ -51,6 +51,7 @@ const main = async () => {
     await connection.confirmTransaction(txHash, "confirmed");
     console.log(`Closed ${account.publicKey.toBase58()}`);
   }
+  return;
 
   const tables = await program.account.table.all();
   console.log(tables);

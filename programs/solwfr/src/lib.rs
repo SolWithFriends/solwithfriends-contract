@@ -13,7 +13,7 @@ use states::*;
 //anchor upgrade target/deploy/basic.so --program-id 66WaYihanAvpcmnN9zYLSi6g8eipjBb8PfFeNUEzUHPS
 
 // Program ID declaration (replace with your own ID when deploying)
-declare_id!("GyjVtacGa7irP3s4EMKt49FU769e5SRrW2kDVnd7AeSp");
+declare_id!("GNsGuF2dfgs4NniXa5vwZ9UcE9XdQPBU9AsJFvxT9hzv");
 
 #[program]
 pub mod solwfr {

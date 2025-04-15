@@ -4,14 +4,14 @@ import { Solwfr } from "../target/types/solwfr";
 import idl from "../target/idl/solwfr.json";
 import fs from "fs";
 import { getClusterURL } from "../utils/helper";
-import { ComputeBudgetProgram, Keypair } from "@solana/web3.js";
+import { ComputeBudgetProgram, Connection, Keypair } from "@solana/web3.js";
 const { SystemProgram, PublicKey } = anchor.web3;
 
 const main = async (cluster: string) => {
   // Creates a connection to the cluster
   console.log(getClusterURL(cluster));
-  const connection = new anchor.web3.Connection(
-    getClusterURL(cluster),
+  const connection = new Connection(
+    "https://api.mainnet-beta.solana.com",
     "confirmed"
   );
 
@@ -68,5 +68,5 @@ const main = async (cluster: string) => {
   }
 };
 
-const cluster: string = process.env.NEXT_PUBLIC_CLUSTER || "devnet";
+const cluster: string = process.env.NEXT_PUBLIC_CLUSTER || "mainnet-beta";
 main(cluster).catch((error) => console.log(error));

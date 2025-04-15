@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/solwfr.json`.
  */
 export type Solwfr = {
-  "address": "GyjVtacGa7irP3s4EMKt49FU769e5SRrW2kDVnd7AeSp",
+  "address": "GNsGuF2dfgs4NniXa5vwZ9UcE9XdQPBU9AsJFvxT9hzv",
   "metadata": {
     "name": "solwfr",
     "version": "0.1.0",

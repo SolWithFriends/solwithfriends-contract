@@ -32,7 +32,6 @@ pub fn deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
             ctx.accounts.system_program.to_account_info(),
         ]
     )?;
-    player_wallet.balance = player_wallet.balance.checked_add(amount).unwrap();
     msg!("SOLWFR::PLAYER_WALLET::DEPOSIT::SUCCESS:{}, player:{}, amount:{}", player_wallet.key(), player_wallet.player, amount);
     Ok(())
 }
@@ -50,7 +49,6 @@ pub fn withdraw(ctx: Context<Withdraw>, amount: u64) -> Result<()> {
 
     **player_wallet.to_account_info().try_borrow_mut_lamports()? -= amount;
     **ctx.accounts.player.to_account_info().try_borrow_mut_lamports()? += amount;
-    player_wallet.balance = player_wallet.balance.checked_sub(amount).unwrap();
     msg!("SOLWFR::PLAYER_WALLET::WITHDRAW::SUCCESS:{}, player:{}, amount:{}", player_wallet.key(), player_wallet.player, amount);
     Ok(())
 }
